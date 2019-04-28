@@ -9,6 +9,9 @@ import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+/*
+ * Custom restTeplate to force content type in response headers
+ */
 public class CustomRestTemplate extends RestTemplate {
     @Override
     protected <T> T doExecute(URI url, HttpMethod method, RequestCallback callback, final ResponseExtractor<T> responseExtractor) throws RestClientException {

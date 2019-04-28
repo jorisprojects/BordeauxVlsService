@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class DistanceController {
 
 	
-
+		/*
+		 * Service pour calculer la distance entre deux points GPS
+		 */
 		@RequestMapping(method=RequestMethod.GET)
 		public Double distance(@RequestParam(value="latitudeFrom", defaultValue="0.0") String latitudeFrom, @RequestParam(value="longitudeFrom", defaultValue="0.0") String longitudeFrom,
 				@RequestParam(value="latitudeTo", defaultValue="0.0") String latitudeTo, @RequestParam(value="longitudeTo", defaultValue="0.0") String longitudeTo) {
@@ -24,7 +26,7 @@ public class DistanceController {
 			Double latitudeToDouble = Double.parseDouble(latitudeTo);
 			Double longitudeToDouble = Double.parseDouble(longitudeTo);
 			
-			
+			//Retourne la distance entre deux points GPS
 			return distanceBetweenTwoPoints( latitudeFromDouble, longitudeFromDouble, latitudeToDouble,longitudeToDouble);
 			
 		}
