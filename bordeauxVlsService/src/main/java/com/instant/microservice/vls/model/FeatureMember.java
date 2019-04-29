@@ -68,6 +68,55 @@ public class FeatureMember {
 		this.distance = distance;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((distance == null) ? 0 : distance.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((nbPlaces == null) ? 0 : nbPlaces.hashCode());
+		result = prime * result + ((nbVelos == null) ? 0 : nbVelos.hashCode());
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FeatureMember other = (FeatureMember) obj;
+		if (distance == null) {
+			if (other.distance != null)
+				return false;
+		} else if (!distance.equals(other.distance))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (nbPlaces == null) {
+			if (other.nbPlaces != null)
+				return false;
+		} else if (!nbPlaces.equals(other.nbPlaces))
+			return false;
+		if (nbVelos == null) {
+			if (other.nbVelos != null)
+				return false;
+		} else if (!nbVelos.equals(other.nbVelos))
+			return false;
+		if (position == null) {
+			if (other.position != null)
+				return false;
+		} else if (!position.equals(other.position))
+			return false;
+		return true;
+	}
+
 	
 	
 	

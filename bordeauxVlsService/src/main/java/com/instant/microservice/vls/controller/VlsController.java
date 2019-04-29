@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -27,6 +28,14 @@ import com.instant.microservice.vls.model.PointGps;
 @RequestMapping("vls")
 public class VlsController {
 
+	@Autowired	
+	private CustomRestTemplate customRestTemplate;
+	
+	@Autowired
+	private RestTemplate restTemplate;
+
+	
+	
 	/*
 	 * Ce service retourne la liste des stations de vélos en libre-service de Bordeaux 
 	 * avec leur distance par rapport aux coordonnées GPS de référence
@@ -36,12 +45,10 @@ public class VlsController {
 		//Creer un PointGps depuis les coordonnées en paramètre
 		PointGps pointGpsFrom = new PointGps(Double.parseDouble(latitude),Double.parseDouble(longitude));
 		//Custom restTemplate pour forcer le content-type dans le header de retour
-		CustomRestTemplate customRestTemplate = new CustomRestTemplate();
 
 		//Récupère la liste des vls de Bordeaux
 		FeatureCollection featureCollection =  customRestTemplate.getForObject("http://data.lacub.fr/wfs?key=9Y2RU3FTE8&SERVICE=WFS&VERSION=1.1.0&REQUEST=GetFeature&TYPENAME=CI_VCUB_P&SRSNAME=EPSG:4326", FeatureCollection.class);
 
-		RestTemplate restTemplate = new RestTemplate();
 		List<FeatureMember> featureMembers = new ArrayList<FeatureMember>();
 		
 		//Calcul de la distance entre les coordonnées du point GPS de référence et celles de chaque stations  
